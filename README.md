@@ -40,3 +40,38 @@ npm run dev
 - Select a CSV file (single file). Expected columns are `wavelength` and `absorbance` (case-insensitive). If different column names are used, the uploader tries to map the first two numeric columns.
 - On upload, the app parses the CSV with PapaParse, shows the molecule loading animation for a short time (simulated processing), then renders the chart and polymer view.
 - Microplastic count is derived as the number of rows whose absorbance is above a chosen threshold (default = mean + 0.5 * stddev). You can adjust the threshold using a slider.
+
+
+## Machine Learning Pipeline
+
+🧠 Machine Learning Tasks
+1️⃣ Classification
+
+- Multi-class supervised learning problem
+- Predicts microplastic particle type/category
+- Outputs discrete class labels
+- Trained using structured spectral/CSV feature inputs
+- Evaluated using Accuracy, Precision, Recall, and F1-Score
+
+2️⃣ Regression
+
+- Continuous prediction problem
+- Estimates quantitative measurements (e.g., intensity, concentration, or derived metrics)
+- Outputs numerical values
+- Learns relationships between spectral features and target variables
+- Evaluated using MSE, RMSE, and R² Score
+
+3️⃣ Model Pipeline
+
+- Data preprocessing (cleaning, normalization, feature extraction)
+- Train-test split for validation
+- Supervised model training
+- Model saving (persistence)
+- Real-time inference through backend integration
+
+4️⃣ Technologies Used
+
+- Scikit-learn
+- Pandas
+- NumPy
+- Python-based ML training scripts
