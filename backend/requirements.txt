@@ -1,0 +1,8 @@
+fastapi
+uvicorn[standard]
+joblib
+pandas
+numpy
+scikit-learn
+python-multipart   # for file uploads parsing
+pydantic

@@ -1,0 +1,100 @@
+/* styles/globals.css */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #__next {
+  height: 100%;
+}
+
+/* Page background: blue-green gradient */
+body {
+  @apply bg-gradient-to-br from-sky-900 via-slate-900 to-emerald-900 text-sky-100;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+}
+
+/* Card style
+   - reduced default padding (p-4) so explicit p-* utility classes override predictably
+   - overflow hidden to clip charts inside rounded corners
+   - box-sizing so padding and border are measured consistently
+*/
+.card {
+  @apply bg-gradient-to-br from-white/5 via-white/10 to-white/5 backdrop-blur-md rounded-2xl shadow-2xl border border-white/10;
+  /* smaller default padding: prefer p-4; increase in place with utility classes when needed */
+  @apply p-4;
+  overflow: hidden;            /* prevent children (charts) from drawing outside rounded corners */
+  box-sizing: border-box;
+}
+
+/* If you intentionally used `card p-4` everywhere, this default is safe.
+   Where you want larger padding, simply use `card p-6` on that element. */
+
+/* Ensure chart canvases behave responsively and cannot overflow */
+.card canvas {
+  display: block;
+  max-width: 100% !important;
+  height: auto !important;   /* prevents Chart.js from setting awkward fixed heights */
+}
+
+/* Chart wrapper helper (use this class around chart components if needed) */
+.chart-wrap {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 0.5rem; /* inner spacing so axes/ticks don't hit rounded corners */
+}
+
+/* Stylish file input button */
+input[type='file']::file-selector-button {
+  @apply bg-emerald-500 text-white px-4 py-2 rounded-full border-0 mr-2 cursor-pointer;
+}
+
+/* Loading bar (animated) */
+.loading-bar {
+  height: 12px;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, rgba(14,165,233,0.08), rgba(52,211,153,0.08));
+  overflow: hidden;
+  position: relative;
+}
+.loading-bar .inner {
+  position: absolute;
+  left: -40%;
+  top: 0;
+  height: 100%;
+  width: 40%;
+  background: linear-gradient(90deg, #06b6d4, #34d399, #60a5fa);
+  transform: skewX(-15deg);
+  animation: mp-slide 1.2s infinite linear;
+}
+
+@keyframes mp-slide {
+  0% { left: -40%; }
+  100% { left: 120%; }
+}
+
+/* Small utility tweaks */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Make chart container responsive when using inline style heights */
+.chart-container {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Optional: increase default tooltip/legend contrast on dark background */
+.canvas-legend, .chart-legend {
+  color: #cfe9ee;
+}
+
